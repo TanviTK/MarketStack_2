@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b19a15f4c994431b040fd4b981aac0f" Name="Diagram1">
+        <EntityTypeShape EntityType="MarketStackModel.End_Of_Day" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarketStackModel.End_Of_Day_Data" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="MarketStackModel.FK__End_Of_Da__EOD_I__5CD6CB2B" />
+        <EntityTypeShape EntityType="MarketStackModel.Historical" Width="1.5" PointX="5.375" PointY="7" />
+        <EntityTypeShape EntityType="MarketStackModel.Historical_Data" Width="1.5" PointX="7.625" PointY="6" />
+        <EntityTypeShape EntityType="MarketStackModel.IntraDay" Width="1.5" PointX="5.375" PointY="1.5" />
+        <EntityTypeShape EntityType="MarketStackModel.IntraDay_Data" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="MarketStackModel.FK__Historical__H_Id__6B24EA82" />
+        <AssociationConnector Association="MarketStackModel.FK__IntraDay___IDay___6477ECF3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

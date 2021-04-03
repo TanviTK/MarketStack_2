@@ -1,0 +1,91 @@
+﻿<div class="jumbotron">
+    <h1>Market Stack</h1>
+</div>
+<div class="row" style="height: 40px"></div>
+<div class="row">
+    <div class="col-md-4"> </div>
+    <div class="col-md-1">
+        <label> Tickers : </label>
+    </div>
+    <div class="col-md-7">
+        <textarea id="tickers" name="tickers" placeholder="please enter comma separated tickers. Example: AAPL,TSLA" rows="5" cols="50"></textarea>
+    </div>
+</div>
+<div class="row" style="height: 80px"></div>
+
+<div class="row">
+    <div class="col-md-1"> </div>
+    <div class="col-md-2">
+        <p><btn class="btn btn-primary" onclick="submitClick('eod')"> End-Of-Day Data</bt></p>
+    </div>
+    <div class="col-md-1"> </div>
+    <div class="col-md-2">
+        <p><btn class="btn btn-primary" onclick="submitClick('intraday')">Intraday Data</btn></p>
+        <text></text>
+    </div>
+    @*<div class="col-md-1"> </div>
+    <div class="col-md-2">
+        <p><btn class="btn btn-primary" >Real-Time Data</btn></p>
+    </div>*@
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-1"> </div>
+    <div class="col-md-2">
+        <label for="fname">From Date:</label>
+        <input type="text" placeholder="YYYY-MM-dd" id="fdate" name="fdate"><br><br>
+        <label for="lname">To Date:</label>
+        <input type="text" placeholder="YYYY-MM-dd" id="tdate" name="tdate"><br><br>
+        <p><btn class="btn btn-primary" onclick="submitClick('historic')">Historical Data</btn></p>
+    </div>
+</div>
+
+<script>
+    function submitClick(typeOfData) {
+        debugger;
+        outurl = "";
+        switch (typeOfData) {
+            case "eod":
+                {
+                    outurl = '/Home/ReadEndOfTheDayData?tickers=' + $('#tickers').val();
+                    $.ajax({
+                        url: outurl,
+                        type: "GET",
+                        success: function (data) {
+                            //debugger; // your custom code } }); 
+                        }
+                    });
+                    break;
+                }
+            case "intraday":
+                {
+                    outurl = '/Home/ReadIntraData?tickers=' + $('#tickers').val();
+                    $.ajax({
+                        url: outurl,
+                        type: "GET",
+                        success: function (data) {
+                        }
+                    });
+                    break;
+                }                
+            case "historic":
+                {
+                    outurl = '/Home/ReadHistoricData?tickers=' + $('#tickers').val();
+                    $.ajax({
+                        url: outurl,
+                        type: "GET",
+                        data:
+                        {
+                            fromdate: $('#fdate').val(),
+                            todate: $('#tdate').val(),
+                        },
+                        success: function (data) {
+                            
+                        }
+                    });
+                    break;
+                }
+            default:
+        }       
+    }
+</script>

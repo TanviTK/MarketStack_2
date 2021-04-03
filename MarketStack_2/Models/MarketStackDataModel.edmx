@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MarketStackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="End_Of_Day">
+          <Key>
+            <PropertyRef Name="EOD_Id" />
+          </Key>
+          <Property Name="EOD_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Limit" Type="int" />
+          <Property Name="Offset" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="DateOfEntry" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="End_Of_Day_Data">
+          <Key>
+            <PropertyRef Name="EOD_Data_ID" />
+          </Key>
+          <Property Name="EOD_Data_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Close" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="Adj_High" Type="float" />
+          <Property Name="Adj_Low" Type="float" />
+          <Property Name="Adj_Close" Type="float" />
+          <Property Name="Adj_Open" Type="float" />
+          <Property Name="Adj_Volume" Type="float" />
+          <Property Name="Split_Factor" Type="float" />
+          <Property Name="Symbol" Type="varchar" MaxLength="20" />
+          <Property Name="Exchange" Type="varchar" MaxLength="20" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="EOD_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Historical">
+          <Key>
+            <PropertyRef Name="H_Id" />
+          </Key>
+          <Property Name="H_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Limit" Type="int" />
+          <Property Name="Offset" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="DateOfEntry" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Historical_Data">
+          <Key>
+            <PropertyRef Name="H_Data_ID" />
+          </Key>
+          <Property Name="H_Data_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Close" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="Adj_High" Type="float" />
+          <Property Name="Adj_Low" Type="float" />
+          <Property Name="Adj_Close" Type="float" />
+          <Property Name="Adj_Open" Type="float" />
+          <Property Name="Adj_Volume" Type="float" />
+          <Property Name="Split_Factor" Type="float" />
+          <Property Name="Symbol" Type="varchar" MaxLength="20" />
+          <Property Name="Exchange" Type="varchar" MaxLength="20" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="H_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="IntraDay">
+          <Key>
+            <PropertyRef Name="IDay_Id" />
+          </Key>
+          <Property Name="IDay_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Limit" Type="int" />
+          <Property Name="Offset" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="DateOfEntry" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IntraDay_Data">
+          <Key>
+            <PropertyRef Name="IDay_Data_ID" />
+          </Key>
+          <Property Name="IDay_Data_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Open" Type="float" />
+          <Property Name="High" Type="float" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Last" Type="float" />
+          <Property Name="Close" Type="float" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Symbol" Type="varchar" MaxLength="20" />
+          <Property Name="Exchange" Type="varchar" MaxLength="20" />
+          <Property Name="IDay_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK__End_Of_Da__EOD_I__5CD6CB2B">
+          <End Role="End_Of_Day" Type="Self.End_Of_Day" Multiplicity="0..1" />
+          <End Role="End_Of_Day_Data" Type="Self.End_Of_Day_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="End_Of_Day">
+              <PropertyRef Name="EOD_Id" />
+            </Principal>
+            <Dependent Role="End_Of_Day_Data">
+              <PropertyRef Name="EOD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historical__H_Id__6B24EA82">
+          <End Role="Historical" Type="Self.Historical" Multiplicity="0..1" />
+          <End Role="Historical_Data" Type="Self.Historical_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historical">
+              <PropertyRef Name="H_Id" />
+            </Principal>
+            <Dependent Role="Historical_Data">
+              <PropertyRef Name="H_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IntraDay___IDay___6477ECF3">
+          <End Role="IntraDay" Type="Self.IntraDay" Multiplicity="0..1" />
+          <End Role="IntraDay_Data" Type="Self.IntraDay_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IntraDay">
+              <PropertyRef Name="IDay_Id" />
+            </Principal>
+            <Dependent Role="IntraDay_Data">
+              <PropertyRef Name="IDay_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarketStackModelStoreContainer">
+          <EntitySet Name="End_Of_Day" EntityType="Self.End_Of_Day" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="End_Of_Day_Data" EntityType="Self.End_Of_Day_Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historical" EntityType="Self.Historical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historical_Data" EntityType="Self.Historical_Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntraDay" EntityType="Self.IntraDay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntraDay_Data" EntityType="Self.IntraDay_Data" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__End_Of_Da__EOD_I__5CD6CB2B" Association="Self.FK__End_Of_Da__EOD_I__5CD6CB2B">
+            <End Role="End_Of_Day" EntitySet="End_Of_Day" />
+            <End Role="End_Of_Day_Data" EntitySet="End_Of_Day_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historical__H_Id__6B24EA82" Association="Self.FK__Historical__H_Id__6B24EA82">
+            <End Role="Historical" EntitySet="Historical" />
+            <End Role="Historical_Data" EntitySet="Historical_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IntraDay___IDay___6477ECF3" Association="Self.FK__IntraDay___IDay___6477ECF3">
+            <End Role="IntraDay" EntitySet="IntraDay" />
+            <End Role="IntraDay_Data" EntitySet="IntraDay_Data" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarketStackModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="End_Of_Day">
+          <Key>
+            <PropertyRef Name="EOD_Id" />
+          </Key>
+          <Property Name="EOD_Id" Type="Guid" Nullable="false" />
+          <Property Name="Limit" Type="Int32" />
+          <Property Name="Offset" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="DateOfEntry" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="End_Of_Day_Data" Relationship="MarketStackModel.FK__End_Of_Da__EOD_I__5CD6CB2B" FromRole="End_Of_Day" ToRole="End_Of_Day_Data" />
+        </EntityType>
+        <EntityContainer Name="MarketStackEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="End_Of_Day" EntityType="Self.End_Of_Day" />
+          <EntitySet Name="End_Of_Day_Data" EntityType="MarketStackModel.End_Of_Day_Data" />
+          <AssociationSet Name="FK__End_Of_Da__EOD_I__5CD6CB2B" Association="MarketStackModel.FK__End_Of_Da__EOD_I__5CD6CB2B">
+            <End Role="End_Of_Day" EntitySet="End_Of_Day" />
+            <End Role="End_Of_Day_Data" EntitySet="End_Of_Day_Data" />
+          </AssociationSet>
+          <EntitySet Name="Historicals" EntityType="MarketStackModel.Historical" />
+          <EntitySet Name="Historical_Data" EntityType="MarketStackModel.Historical_Data" />
+          <EntitySet Name="IntraDays" EntityType="MarketStackModel.IntraDay" />
+          <EntitySet Name="IntraDay_Data" EntityType="MarketStackModel.IntraDay_Data" />
+          <AssociationSet Name="FK__Historical__H_Id__6B24EA82" Association="MarketStackModel.FK__Historical__H_Id__6B24EA82">
+            <End Role="Historical" EntitySet="Historicals" />
+            <End Role="Historical_Data" EntitySet="Historical_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IntraDay___IDay___6477ECF3" Association="MarketStackModel.FK__IntraDay___IDay___6477ECF3">
+            <End Role="IntraDay" EntitySet="IntraDays" />
+            <End Role="IntraDay_Data" EntitySet="IntraDay_Data" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="End_Of_Day_Data">
+          <Key>
+            <PropertyRef Name="EOD_Data_ID" />
+          </Key>
+          <Property Name="EOD_Data_ID" Type="Guid" Nullable="false" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Close" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="Adj_High" Type="Double" />
+          <Property Name="Adj_Low" Type="Double" />
+          <Property Name="Adj_Close" Type="Double" />
+          <Property Name="Adj_Open" Type="Double" />
+          <Property Name="Adj_Volume" Type="Double" />
+          <Property Name="Split_Factor" Type="Double" />
+          <Property Name="Symbol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Exchange" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="EOD_Id" Type="Guid" />
+          <NavigationProperty Name="End_Of_Day" Relationship="MarketStackModel.FK__End_Of_Da__EOD_I__5CD6CB2B" FromRole="End_Of_Day_Data" ToRole="End_Of_Day" />
+        </EntityType>
+        <Association Name="FK__End_Of_Da__EOD_I__5CD6CB2B">
+          <End Type="MarketStackModel.End_Of_Day" Role="End_Of_Day" Multiplicity="0..1" />
+          <End Type="MarketStackModel.End_Of_Day_Data" Role="End_Of_Day_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="End_Of_Day">
+              <PropertyRef Name="EOD_Id" />
+            </Principal>
+            <Dependent Role="End_Of_Day_Data">
+              <PropertyRef Name="EOD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Historical">
+          <Key>
+            <PropertyRef Name="H_Id" />
+          </Key>
+          <Property Name="H_Id" Type="Guid" Nullable="false" />
+          <Property Name="Limit" Type="Int32" />
+          <Property Name="Offset" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="DateOfEntry" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Historical_Data" Relationship="MarketStackModel.FK__Historical__H_Id__6B24EA82" FromRole="Historical" ToRole="Historical_Data" />
+        </EntityType>
+        <EntityType Name="Historical_Data">
+          <Key>
+            <PropertyRef Name="H_Data_ID" />
+          </Key>
+          <Property Name="H_Data_ID" Type="Guid" Nullable="false" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Close" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="Adj_High" Type="Double" />
+          <Property Name="Adj_Low" Type="Double" />
+          <Property Name="Adj_Close" Type="Double" />
+          <Property Name="Adj_Open" Type="Double" />
+          <Property Name="Adj_Volume" Type="Double" />
+          <Property Name="Split_Factor" Type="Double" />
+          <Property Name="Symbol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Exchange" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="H_Id" Type="Guid" />
+          <NavigationProperty Name="Historical" Relationship="MarketStackModel.FK__Historical__H_Id__6B24EA82" FromRole="Historical_Data" ToRole="Historical" />
+        </EntityType>
+        <EntityType Name="IntraDay">
+          <Key>
+            <PropertyRef Name="IDay_Id" />
+          </Key>
+          <Property Name="IDay_Id" Type="Guid" Nullable="false" />
+          <Property Name="Limit" Type="Int32" />
+          <Property Name="Offset" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="DateOfEntry" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="IntraDay_Data" Relationship="MarketStackModel.FK__IntraDay___IDay___6477ECF3" FromRole="IntraDay" ToRole="IntraDay_Data" />
+        </EntityType>
+        <EntityType Name="IntraDay_Data">
+          <Key>
+            <PropertyRef Name="IDay_Data_ID" />
+          </Key>
+          <Property Name="IDay_Data_ID" Type="Guid" Nullable="false" />
+          <Property Name="Open" Type="Double" />
+          <Property Name="High" Type="Double" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Last" Type="Double" />
+          <Property Name="Close" Type="Double" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Symbol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Exchange" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDay_Id" Type="Guid" />
+          <NavigationProperty Name="IntraDay" Relationship="MarketStackModel.FK__IntraDay___IDay___6477ECF3" FromRole="IntraDay_Data" ToRole="IntraDay" />
+        </EntityType>
+        <Association Name="FK__Historical__H_Id__6B24EA82">
+          <End Type="MarketStackModel.Historical" Role="Historical" Multiplicity="0..1" />
+          <End Type="MarketStackModel.Historical_Data" Role="Historical_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historical">
+              <PropertyRef Name="H_Id" />
+            </Principal>
+            <Dependent Role="Historical_Data">
+              <PropertyRef Name="H_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IntraDay___IDay___6477ECF3">
+          <End Type="MarketStackModel.IntraDay" Role="IntraDay" Multiplicity="0..1" />
+          <End Type="MarketStackModel.IntraDay_Data" Role="IntraDay_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IntraDay">
+              <PropertyRef Name="IDay_Id" />
+            </Principal>
+            <Dependent Role="IntraDay_Data">
+              <PropertyRef Name="IDay_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarketStackModelStoreContainer" CdmEntityContainer="MarketStackEntities">
+          <EntitySetMapping Name="End_Of_Day">
+            <EntityTypeMapping TypeName="MarketStackModel.End_Of_Day">
+              <MappingFragment StoreEntitySet="End_Of_Day">
+                <ScalarProperty Name="DateOfEntry" ColumnName="DateOfEntry" />
+                <ScalarProperty Name="EOD_Id" ColumnName="EOD_Id" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="End_Of_Day_Data">
+            <EntityTypeMapping TypeName="MarketStackModel.End_Of_Day_Data">
+              <MappingFragment StoreEntitySet="End_Of_Day_Data">
+                <ScalarProperty Name="EOD_Id" ColumnName="EOD_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Split_Factor" ColumnName="Split_Factor" />
+                <ScalarProperty Name="Adj_Volume" ColumnName="Adj_Volume" />
+                <ScalarProperty Name="Adj_Open" ColumnName="Adj_Open" />
+                <ScalarProperty Name="Adj_Close" ColumnName="Adj_Close" />
+                <ScalarProperty Name="Adj_Low" ColumnName="Adj_Low" />
+                <ScalarProperty Name="Adj_High" ColumnName="Adj_High" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="EOD_Data_ID" ColumnName="EOD_Data_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historicals">
+            <EntityTypeMapping TypeName="MarketStackModel.Historical">
+              <MappingFragment StoreEntitySet="Historical">
+                <ScalarProperty Name="DateOfEntry" ColumnName="DateOfEntry" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="H_Id" ColumnName="H_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historical_Data">
+            <EntityTypeMapping TypeName="MarketStackModel.Historical_Data">
+              <MappingFragment StoreEntitySet="Historical_Data">
+                <ScalarProperty Name="H_Id" ColumnName="H_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Split_Factor" ColumnName="Split_Factor" />
+                <ScalarProperty Name="Adj_Volume" ColumnName="Adj_Volume" />
+                <ScalarProperty Name="Adj_Open" ColumnName="Adj_Open" />
+                <ScalarProperty Name="Adj_Close" ColumnName="Adj_Close" />
+                <ScalarProperty Name="Adj_Low" ColumnName="Adj_Low" />
+                <ScalarProperty Name="Adj_High" ColumnName="Adj_High" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="H_Data_ID" ColumnName="H_Data_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntraDays">
+            <EntityTypeMapping TypeName="MarketStackModel.IntraDay">
+              <MappingFragment StoreEntitySet="IntraDay">
+                <ScalarProperty Name="DateOfEntry" ColumnName="DateOfEntry" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Offset" ColumnName="Offset" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="IDay_Id" ColumnName="IDay_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntraDay_Data">
+            <EntityTypeMapping TypeName="MarketStackModel.IntraDay_Data">
+              <MappingFragment StoreEntitySet="IntraDay_Data">
+                <ScalarProperty Name="IDay_Id" ColumnName="IDay_Id" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="IDay_Data_ID" ColumnName="IDay_Data_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
